@@ -25,27 +25,12 @@ endif
 
 DL_PATH = https://github.com/RobotLocomotion/gurobi-tarballs/archive
 UNZIP_DIR = gurobi562
-ifeq ($(shell uname -s), Darwin)
-  DL_NAME = gurobi5.6.2_mac64.tar.gz
-else ifeq ($(shell uname -s), Linux)
-  DL_NAME = gurobi5.6.2_linux64.tar.gz
-endif
 
 all: pod-build/Makefile $(HOME)/gurobi.lic 
 	$(MAKE) -C pod-build all install
 
 $(UNZIP_DIR): 
-	@echo "Fetching Gurobi source tarballs from private Github repository."
-	@echo "If you do not have access to this repository, please download"
-	@echo "version 5.6.2 for your platform from http://www.gurobi.com.\n"
-	@read -p "Enter your github username: " USERNAME; curl -sL --user $$USERNAME "$(DL_PATH)/$(DL_NAME).zip" > tarball.zip
-	@echo "Extracting gurobi tarballs"
-	@unzip tarball.zip || echo "Gurobi source download failed"
-	@mv -i gurobi-tarballs-$(DL_NAME)/$(DL_NAME) . 
-	@rm -rf gurobi-tarballs-$(DL_NAME)  
-	@tar -xzf $(DL_NAME)
-	@rm -rf $(DL_NAME)
-	@rm tarball.zip
+	./download_gurobi.pl
 
 pod-build/Makefile: $(UNZIP_DIR)
 	$(MAKE) configure
