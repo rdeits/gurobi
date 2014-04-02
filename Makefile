@@ -69,7 +69,7 @@ install_prereqs_homebrew :
 	brew install curl
 
 install_prereqs_ubuntu :
-	apt-get install curl libwww-perl
+	apt-get install curl libwww-perl libterm-readkey-perl
 
 # other (custom) targets are passed through to the cmake-generated Makefile 
 %::
