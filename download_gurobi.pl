@@ -64,7 +64,8 @@ if ( $ENV{'GUROBI_DISTRO'} ) {
 #print $response->content();
   print "done\n";
 
-  $filename = "`pwd`/$filename"
+  chomp($cwd = `pwd`);
+  $filename = "$cwd/$filename"
 }
 
 if ($^O eq 'darwin') {
