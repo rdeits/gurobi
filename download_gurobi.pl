@@ -63,19 +63,21 @@ if ( $ENV{'GUROBI_DISTRO'} ) {
   $response = $mech->request( $form->click , $filename);
 #print $response->content();
   print "done\n";
+
+  $filename = "`pwd`/$filename"
 }
 
 if ($^O eq 'darwin') {
   system("mkdir","tmp");
   chdir("tmp");
-  system("xar","-xf","../$filename");
+  system("xar","-xf","$filename");
   chdir("gurobi562mac64tar.pkg");
   system("tar","-xvf","Payload");
   system("tar","-xvf","gurobi5.6.2_mac64.tar.gz");
   system("mv","gurobi562","../../");
   chdir("../..");
   system("rm","-rf","tmp");
-  system("rm","-rf",$filename);
+#  system("rm","-rf",$filename);
 } elsif ($^O eq 'linux') {
   system("tar","-xvf",$filename);
 #  system("rm","-rf",$filename);
