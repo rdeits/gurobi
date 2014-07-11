@@ -26,10 +26,10 @@ endif
 DL_PATH = https://github.com/RobotLocomotion/gurobi-tarballs/archive
 UNZIP_DIR = gurobi562
 
-all: pod-build/Makefile $(HOME)/gurobi.lic 
+all: pod-build/Makefile $(HOME)/gurobi.lic
 	$(MAKE) -C pod-build all install
 
-$(UNZIP_DIR): 
+$(UNZIP_DIR):
 	./download_gurobi.pl
 
 pod-build/Makefile: $(UNZIP_DIR)
@@ -48,7 +48,7 @@ configure: $(UNZIP_DIR)
 
 # todo: make this logic more robust:
 #   check for license path environment variable
-$(HOME)/gurobi.lic : 
+$(HOME)/gurobi.lic :
 	@echo "You do not appear to have a license for gurobi installed in $(HOME)/gurobi.lic\n"
 	@echo "Open the following url in your favorite browser and request the license:\n"
 	@echo "           http://www.gurobi.com/download/licenses/free-academic\n"
@@ -61,16 +61,6 @@ clean:
 	-if [ -e pod-build/install_manifest.txt ]; then rm -f `cat pod-build/install_manifest.txt`; fi
 	-if [ -d pod-build ]; then $(MAKE) -C pod-build clean; rm -rf pod-build; fi
 
-.PHONY: install_prereqs_macports install_prereqs_homebrew install_prereqs_ubuntu
-install_prereqs_macports :
-	port install curl
-
-install_prereqs_homebrew :
-	brew install curl
-
-install_prereqs_ubuntu :
-	apt-get install curl libwww-perl libterm-readkey-perl
-
-# other (custom) targets are passed through to the cmake-generated Makefile 
+# other (custom) targets are passed through to the cmake-generated Makefile
 %::
 	$(MAKE) -C pod-build $@
