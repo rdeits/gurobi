@@ -23,7 +23,6 @@ ifeq "$(BUILD_TYPE)" ""
 BUILD_TYPE="Release"
 endif
 
-DL_PATH = https://github.com/RobotLocomotion/gurobi-tarballs/archive
 UNZIP_DIR = gurobi600
 
 all: pod-build/Makefile $(HOME)/gurobi.lic
