@@ -2,3 +2,5 @@ build
 pod-build
 gurobi562
 gurobi5.6.2_*
+gurobi6.0.2_mac64.pkg
+gurobi602
