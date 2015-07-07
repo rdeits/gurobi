@@ -53,14 +53,14 @@ if ( $ENV{'GUROBI_DISTRO'} ) {
   $form = shift(@forms);  # download form
 
   if ($^O eq 'darwin') {
-      $filename = 'gurobi6.0.2_mac64.pkg';
+      $filename = 'gurobi6.0.4_mac64.pkg';
       $postfix = '/Mac OS';
   } elsif ($^O eq 'linux') {
-      $filename = 'gurobi6.0.2_linux64.tar.gz';
+      $filename = 'gurobi6.0.4_linux64.tar.gz';
       $postfix = '/Linux 64';
   }
 
-  $form->value('filename','6.0.2/'.$filename);#.$postfix);
+  $form->value('filename','6.0.4/'.$filename);#.$postfix);
 
   print "\nDownloading $filename ... ";
   $response = $mech->request( $form->click , $filename);
@@ -75,10 +75,10 @@ if ($^O eq 'darwin') {
   system("mkdir","tmp");
   chdir("tmp");
   system("xar","-xf","$filename");
-  chdir("gurobi602mac64tar.pkg");
+  chdir("gurobi604mac64tar.pkg");
   system("tar","-xvf","Payload");
-  system("tar","-xvf","gurobi6.0.2_mac64.tar.gz");
-  system("mv","gurobi602","../../");
+  system("tar","-xvf","gurobi6.0.4_mac64.tar.gz");
+  system("mv","gurobi604","../../");
   chdir("../..");
   system("rm","-rf","tmp");
 #  system("rm","-rf",$filename);

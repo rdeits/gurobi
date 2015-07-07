@@ -17,7 +17,7 @@ else()
    http://www.gurobi.com/download/gurobi-optimizer")
 endif()
 
-set(GUROBI_HOME ${CMAKE_CURRENT_SOURCE_DIR}/gurobi602/${osdir})
+set(GUROBI_HOME ${CMAKE_CURRENT_SOURCE_DIR}/gurobi604/${osdir})
 
 install(FILES ${GUROBI_HOME}/include/gurobi_c.h
 	      	    ${GUROBI_HOME}/include/gurobi_c++.h
@@ -33,7 +33,7 @@ if (APPLE)
    execute_process(COMMAND install_name_tool -id ${CMAKE_INSTALL_PREFIX}/lib/libgurobi60.so  ${GUROBI_HOME}/lib/libgurobi60.so)
 
 elseif (UNIX)
-   install(FILES ${GUROBI_HOME}/lib/libgurobi.so.6.0.2 DESTINATION lib)
+   install(FILES ${GUROBI_HOME}/lib/libgurobi.so.6.0.4 DESTINATION lib)
 endif()
 
 pods_install_bash_setup(gurobi
@@ -63,7 +63,7 @@ file(WRITE ${CMAKE_INSTALL_PREFIX}/matlab/rmpath_gurobi.m
     )
 
 pods_install_pkg_config_file(gurobi
-  VERSION 6.0.2
+  VERSION 6.0.4
   DESCRIPTION "Gurobi Optimizer"
   LIBS "-lgurobi60"
 )
