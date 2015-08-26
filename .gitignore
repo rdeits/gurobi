@@ -2,7 +2,6 @@ build
 pod-build
 gurobi562
 gurobi5.6.2_*
-gurobi6.0.2_*
-gurobi602
-gurobi604
+gurobi6.0.*
+gurobi60*
 *.tar.gz
