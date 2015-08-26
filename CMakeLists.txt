@@ -40,6 +40,7 @@ pods_install_bash_setup(gurobi
   "export GUROBI_HOME=${GUROBI_HOME}\n"
   "export PATH=\${PATH}:\${GUROBI_HOME}/bin\n"
   "export LD_LIBRARY_PATH=\${LD_LIBRARY_PATH}:\${GUROBI_HOME}/lib\n"
+  "export PYTHONPATH=\${PYTHONPATH}:${CMAKE_INSTALL_PREFIX}/lib/python2.7/site-packages\n"
 )
 
 message(STATUS "Writing addpath_gurobi.m and rmpath_gurobi.m to ${CMAKE_INSTALL_PREFIX}/matlab")
@@ -67,3 +68,7 @@ pods_install_pkg_config_file(gurobi
   DESCRIPTION "Gurobi Optimizer"
   LIBS "-lgurobi60"
 )
+
+add_custom_target(gurobi_python ALL
+                  COMMAND python setup.py install --prefix=${CMAKE_INSTALL_PREFIX}
+                  WORKING_DIRECTORY ${GUROBI_HOME})
